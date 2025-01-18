@@ -2,10 +2,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import './leaderboard.css'
-
-function getAvatar(avatarURL) {
-  return avatarURL ? avatarURL : 'https://via.placeholder.com/50'
-}
+import getAvatar from '../../utils/getAvatar'
 
 export default function Leaderboard() {
   const users = useSelector((state) => state.users)

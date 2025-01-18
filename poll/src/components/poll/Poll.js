@@ -2,11 +2,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import './poll.css'
+import getAvatar from '../../utils/getAvatar'
 
-function getAvatar(avatarURL) {
-  return avatarURL ? avatarURL : 'https://via.placeholder.com/50'
-}
+import './poll.css'
 
 export default function Poll({ id }) {
   const { question, author } = useSelector((state) => {

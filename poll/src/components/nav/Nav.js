@@ -3,11 +3,10 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutAuthedUser } from '../../actions/authedUser'
+import getAvatar from '../../utils/getAvatar'
+
 import './nav.css'
 
-function getAvatar(avatarURL) {
-  return avatarURL ? avatarURL : 'https://via.placeholder.com/50'
-}
 
 export default function Nav() {
   const dispatch = useDispatch()

@@ -3,11 +3,9 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { handleAnswer } from '../../actions/shared'
-import './poll_details.css'
+import getAvatar from '../../utils/getAvatar'
 
-function getAvatar(avatarURL) {
-  return avatarURL ? avatarURL : 'https://via.placeholder.com/50'
-}
+import './poll_details.css'
 
 export default function PollDetails() {
   const { id } = useParams()
