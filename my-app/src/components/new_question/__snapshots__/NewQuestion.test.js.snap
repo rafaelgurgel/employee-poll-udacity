@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewQuestion Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="new-question-container"
+  >
+    <h3
+      class="new-question-title"
+    >
+      Create New Question
+    </h3>
+    <form
+      class="new-question-form"
+    >
+      <label>
+        Would you rather...
+      </label>
+      <input
+        class="new-question-input"
+        placeholder="Option One"
+        required=""
+        type="text"
+        value=""
+      />
+      <h4
+        class="new-question-or"
+      >
+        OR
+      </h4>
+      <input
+        class="new-question-input"
+        placeholder="Option Two"
+        required=""
+        type="text"
+        value=""
+      />
+      <button
+        class="new-question-submit"
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

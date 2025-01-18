@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PollDetails Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="polldetails-container"
+  >
+    <h3
+      class="polldetails-title"
+    >
+      Poll by Sarah Edo
+    </h3>
+    <img
+      alt="Avatar of Sarah Edo"
+      class="polldetails-avatar"
+      src="defaultAvatar.svg"
+    />
+    <h4
+      class="polldetails-subtitle"
+    >
+      Would You Rather...
+    </h4>
+    <div>
+      <div
+        class="polldetails-results"
+      >
+        OptionOne
+        <br />
+        0 vote(s) (0.00%)
+      </div>
+      <div
+        class="polldetails-results"
+        style="font-weight: bold; color: green;"
+      >
+        OptionTwo
+        <br />
+        1 vote(s) (100.00%)
+      </div>
+    </div>
+    <br />
+    <button
+      class="polldetails-back"
+    >
+      Back
+    </button>
+  </div>
+</DocumentFragment>
+`;

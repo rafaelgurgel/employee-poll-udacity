@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="dashboard-container"
+  >
+    <h3
+      class="dashboard-header"
+    >
+      Dashboard
+    </h3>
+    <div
+      class="dashboard-toggle"
+    >
+      <button
+        class="active"
+      >
+        Unanswered
+      </button>
+      <button
+        class=""
+      >
+        Answered
+      </button>
+    </div>
+    <ul
+      class="dashboard-list"
+    />
+  </div>
+</DocumentFragment>
+`;

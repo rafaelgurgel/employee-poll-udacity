@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Leaderboard Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="leaderboard-container"
+  >
+    <h3
+      class="leaderboard-title"
+    >
+      Leaderboard
+    </h3>
+    <ul
+      class="leaderboard-list"
+    >
+      <li
+        class="leaderboard-item"
+      >
+        <div
+          class="leaderboard-item-content"
+        >
+          <img
+            alt="Avatar of Sarah Edo"
+            class="leaderboard-avatar"
+            src="defaultAvatar.svg"
+          />
+          <div
+            class="leaderboard-user-details"
+          >
+            <h4>
+              Sarah Edo
+            </h4>
+            <p>
+              Questions Asked: 2
+            </p>
+            <p>
+              Questions Answered: 1
+            </p>
+            <p>
+              Total: 3
+            </p>
+          </div>
+        </div>
+      </li>
+      <li
+        class="leaderboard-item"
+      >
+        <div
+          class="leaderboard-item-content"
+        >
+          <img
+            alt="Avatar of Tyler McGinnis"
+            class="leaderboard-avatar"
+            src="defaultAvatar.svg"
+          />
+          <div
+            class="leaderboard-user-details"
+          >
+            <h4>
+              Tyler McGinnis
+            </h4>
+            <p>
+              Questions Asked: 1
+            </p>
+            <p>
+              Questions Answered: 1
+            </p>
+            <p>
+              Total: 2
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

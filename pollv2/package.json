@@ -1,16 +1,12 @@
 {
-  "name": "poll",
+  "name": "pollv2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "cra-template": "1.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^9.2.0",
-    "react-router-dom": "^6.14.2",
-    "react-scripts": "5.0.1",
-    "redux-thunk": "^3.1.0",
-    "web-vitals": "^4.2.4"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,8 +31,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "jest": "^27.5.1"
   }
 }

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav Component matches snapshot 1`] = `
+<DocumentFragment>
+  <nav
+    class="nav"
+  >
+    <a
+      href="/home"
+    >
+      Home
+    </a>
+    <a
+      href="/add"
+    >
+      New Poll
+    </a>
+    <a
+      href="/leaderboard"
+    >
+      Leaderboard
+    </a>
+    <div
+      class="nav-profile"
+    >
+      <img
+        alt="Avatar of Sarah Edo"
+        class="nav-avatar"
+        src="defaultAvatar.svg"
+      />
+      <span>
+        Hello, Sarah Edo
+      </span>
+      <button
+        class="logout-button"
+      >
+        Logout
+      </button>
+    </div>
+  </nav>
+</DocumentFragment>
+`;

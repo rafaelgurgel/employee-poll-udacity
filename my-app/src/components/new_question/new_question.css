@@ -1,0 +1,60 @@
+/* NewQuestion.css */
+
+/* Container for the "Create New Question" section */
+.new-question-container {
+  margin: 2rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Title for the new question form */
+.new-question-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* The form itself */
+.new-question-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+/* Label styling */
+.new-question-form label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Inputs for the two options */
+.new-question-input {
+  display: block;
+  margin-bottom: 1rem;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* The "OR" text, styled a bit */
+.new-question-or {
+  text-align: center;
+  margin: 0;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* The submit button */
+.new-question-submit {
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+.new-question-submit:hover {
+  background-color: #1565c0;
+}

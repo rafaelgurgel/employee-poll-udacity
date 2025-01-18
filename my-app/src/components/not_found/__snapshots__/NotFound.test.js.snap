@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="notfound-container"
+  >
+    <h2
+      class="notfound-text"
+    >
+      404 - Not Found
+    </h2>
+  </div>
+</DocumentFragment>
+`;

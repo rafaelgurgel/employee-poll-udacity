@@ -3,19 +3,18 @@ import { render } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { BrowserRouter } from 'react-router-dom'
-import App from './App'
+import NewQuestion from './NewQuestion'
 import '@testing-library/jest-dom'
 
-// Minimal mock reducer
-const mockReducer = (state = { authedUser: null, users: {}, questions: {} }) => state
+const mockReducer = (state = {}) => state
 const mockStore = createStore(mockReducer)
 
-describe('App Component', () => {
+describe('NewQuestion Component', () => {
   it('matches snapshot', () => {
     const { asFragment } = render(
       <Provider store={mockStore}>
         <BrowserRouter>
-          <App />
+          <NewQuestion />
         </BrowserRouter>
       </Provider>
     )

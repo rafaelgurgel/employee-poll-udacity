@@ -3,19 +3,24 @@ import { render } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { BrowserRouter } from 'react-router-dom'
-import App from './App'
+import Nav from './Nav'
 import '@testing-library/jest-dom'
 
-// Minimal mock reducer
-const mockReducer = (state = { authedUser: null, users: {}, questions: {} }) => state
+const mockReducer = (state = {
+  authedUser: 'sarahedo',
+  users: {
+    sarahedo: { id: 'sarahedo', name: 'Sarah Edo', avatarURL: null },
+  }
+}) => state
+
 const mockStore = createStore(mockReducer)
 
-describe('App Component', () => {
+describe('Nav Component', () => {
   it('matches snapshot', () => {
     const { asFragment } = render(
       <Provider store={mockStore}>
         <BrowserRouter>
-          <App />
+          <Nav />
         </BrowserRouter>
       </Provider>
     )

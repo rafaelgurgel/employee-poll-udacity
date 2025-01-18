@@ -2,21 +2,30 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import { BrowserRouter } from 'react-router-dom'
-import App from './App'
+import Poll from './Poll'
 import '@testing-library/jest-dom'
 
-// Minimal mock reducer
-const mockReducer = (state = { authedUser: null, users: {}, questions: {} }) => state
+const mockReducer = (state = {
+  questions: {
+    q1: {
+      id: 'q1',
+      author: 'sarahedo',
+      optionOne: { votes: [], text: 'OptionOne' },
+      optionTwo: { votes: [], text: 'OptionTwo' }
+    },
+  },
+  users: {
+    sarahedo: { id: 'sarahedo', name: 'Sarah Edo', avatarURL: null }
+  }
+}) => state
+
 const mockStore = createStore(mockReducer)
 
-describe('App Component', () => {
+describe('Poll Component', () => {
   it('matches snapshot', () => {
     const { asFragment } = render(
       <Provider store={mockStore}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <Poll id="q1" />
       </Provider>
     )
     expect(asFragment()).toMatchSnapshot()
