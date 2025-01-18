@@ -1,9 +1,9 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 
 export default function ProtectedRoute({ authedUser, children }) {
   if (!authedUser) {
-    return <Navigate to="/" replace />
+    return <Navigate to="/" replace />;
   }
-  return children
+  return children;
 }

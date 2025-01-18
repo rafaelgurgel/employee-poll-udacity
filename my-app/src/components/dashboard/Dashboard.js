@@ -5,32 +5,32 @@ import Poll from '../poll/Poll'
 import './dashboard.css'
 
 export default function Dashboard() {
-  const [showUnanswered, setShowUnanswered] = useState(true)
-  const authedUser = useSelector((state) => state.authedUser)
-  const questions = useSelector((state) => state.questions)
-  const userAnswers = useSelector((state) => state.users[authedUser].answers)
+  const [showUnanswered, setShowUnanswered] = useState(true);
+  const authedUser = useSelector((state) => state.authedUser);
+  const questions = useSelector((state) => state.questions);
+  const users = useSelector((state) => state.users);
+
+  // Defensive check: if users[authedUser] doesn't exist yet, default to {}
+  const userAnswers = users[authedUser]?.answers || {};
 
   const answered = Object.keys(userAnswers)
-    .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
   const unanswered = Object.keys(questions)
     .filter((qid) => !answered.includes(qid))
-    .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
   return (
     <div className="dashboard-container">
       <h3 className="dashboard-header">Dashboard</h3>
 
       <div className="dashboard-toggle">
-        {/* Unanswered Button */}
         <button
           className={showUnanswered ? 'active' : ''}
           onClick={() => setShowUnanswered(true)}
         >
           Unanswered
         </button>
-
-        {/* Answered Button */}
         <button
           className={!showUnanswered ? 'active' : ''}
           onClick={() => setShowUnanswered(false)}
@@ -50,9 +50,9 @@ export default function Dashboard() {
               <li key={id}>
                 <Poll id={id} />
               </li>
-            ))
-        }
+            ))}
       </ul>
     </div>
-  )
+  );
 }
+

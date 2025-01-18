@@ -10,6 +10,18 @@ const mockReducer = (state = {}) => state
 const mockStore = createStore(mockReducer)
 
 describe('NewQuestion Component', () => {
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation((message) => {
+      if (!message.includes('React.startTransition')) {
+        console.warn(message)
+      }
+    })
+  })
+
+  afterAll(() => {
+    jest.restoreAllMocks()
+  })
+
   it('matches snapshot', () => {
     const { asFragment } = render(
       <Provider store={mockStore}>

@@ -1,5 +1,5 @@
 // src/components/Login.js
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleSetAuthedUser } from '../../actions/shared'
 import { useNavigate } from 'react-router-dom'
@@ -14,26 +14,36 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  // We have all users in Redux state
+  // All users in Redux state
   const users = useSelector((state) => state.users)
+
+  // 1. On mount, check if there's an authedUser in localStorage
+  //    and dispatch if it exists
+  useEffect(() => {
+    const storedUser = localStorage.getItem('authedUser')
+    if (storedUser) {
+      dispatch(handleSetAuthedUser(storedUser))
+      // Optionally navigate to /home automatically if you want
+      // navigate('/home')
+    }
+  }, [dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // Check if the user by this username exists
     const user = users[username]
     if (!user) {
       setError('User does not exist.')
       return
     }
 
-    // Check if the password matches
     if (user.password !== password) {
       setError('Incorrect password.')
       return
     }
 
-    // If credentials are correct, setAuthedUser
+    localStorage.setItem('authedUser', username)
+    console.log(localStorage)
     dispatch(handleSetAuthedUser(username))
     navigate('/home')
   }
@@ -67,9 +77,7 @@ export default function Login() {
           }}
         />
 
-        <button type="submit">
-          Login
-        </button>
+        <button type="submit">Login</button>
       </form>
 
       {error && <p className="error-message">{error}</p>}

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Poll Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="poll-container"
+  >
+    <div
+      class="poll-header"
+    >
+      <img
+        alt="Avatar of Sarah Edo"
+        class="poll-avatar"
+        src="defaultAvatar.svg"
+      />
+      <h4>
+        Sarah Edo asks:
+      </h4>
+    </div>
+    <p
+      class="poll-content"
+    >
+      Would you rather 
+      <strong>
+        OptionOne
+      </strong>
+       or ...
+    </p>
+    <a
+      class="poll-link"
+      href="/questions/q1"
+    >
+      View Poll
+    </a>
+  </div>
+</DocumentFragment>
+`;

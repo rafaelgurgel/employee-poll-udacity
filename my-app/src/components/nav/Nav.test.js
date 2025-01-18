@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, createRoutesFromElements, Route, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Nav from './Nav'
 import '@testing-library/jest-dom'
 
@@ -17,11 +17,19 @@ const mockStore = createStore(mockReducer)
 
 describe('Nav Component', () => {
   it('matches snapshot', () => {
+    const router = createBrowserRouter(
+      createRoutesFromElements(<Route path="/" element={<Nav />} />),
+      {
+        future: {
+          v7_relativeSplatPath: true,
+          v7_startTransition: true,
+        },
+      }
+    )
+
     const { asFragment } = render(
       <Provider store={mockStore}>
-        <BrowserRouter>
-          <Nav />
-        </BrowserRouter>
+        <RouterProvider router={router} />
       </Provider>
     )
     expect(asFragment()).toMatchSnapshot()

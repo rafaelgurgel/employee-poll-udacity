@@ -2,8 +2,22 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+import { BrowserRouter } from 'react-router-dom'
 import Poll from './Poll'
 import '@testing-library/jest-dom'
+
+// Suppress React Router Future Flag warnings
+beforeAll(() => {
+  jest.spyOn(console, 'warn').mockImplementation((message) => {
+    if (!message.includes('React.startTransition')) {
+      console.warn(message)
+    }
+  })
+})
+
+afterAll(() => {
+  jest.restoreAllMocks()
+})
 
 const mockReducer = (state = {
   questions: {
@@ -25,7 +39,9 @@ describe('Poll Component', () => {
   it('matches snapshot', () => {
     const { asFragment } = render(
       <Provider store={mockStore}>
-        <Poll id="q1" />
+        <BrowserRouter>
+          <Poll id="q1" />
+        </BrowserRouter>
       </Provider>
     )
     expect(asFragment()).toMatchSnapshot()

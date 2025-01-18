@@ -1,40 +1,40 @@
-// src/components/PollDetails.js
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useParams, useNavigate } from 'react-router-dom'
-import { handleAnswer } from '../../actions/shared'
-import getAvatar from '../../utils/getAvatar'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams, Navigate, useNavigate } from 'react-router-dom';
+import { handleAnswer } from '../../actions/shared';
+import getAvatar from '../../utils/getAvatar';
 
-import './poll_details.css'
+import './poll_details.css';
 
 export default function PollDetails() {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { question, author, user } = useSelector((state) => {
-    const question = state.questions[id]
-    const author = question ? state.users[question.author] : null
-    const authedUser = state.authedUser
-    const user = authedUser ? state.users[authedUser] : null
-    return { question, author, user }
-  })
+    const question = state.questions[id];
+    const author = question ? state.users[question.author] : null;
+    const authedUser = state.authedUser;
+    const user = authedUser ? state.users[authedUser] : null;
+    return { question, author, user };
+  });
 
+  
   if (!question) {
-    return <p>404 - Poll not found</p>
+    return <Navigate to="/notfound" />;
   }
-
+  console.log(user)
   if (!author || !user) {
-    return <p>Required data not found</p>
+    return <p>Required data not found</p>;
   }
 
-  const hasVotedFor = user.answers[id]
+  const hasVotedFor = user.answers[id];
   const totalVotes =
-    question.optionOne.votes.length + question.optionTwo.votes.length
+    question.optionOne.votes.length + question.optionTwo.votes.length;
 
   const handleVote = (answer) => {
-    dispatch(handleAnswer(id, answer))
-  }
+    dispatch(handleAnswer(id, answer));
+  };
 
   return (
     <div className="polldetails-container">
@@ -97,5 +97,5 @@ export default function PollDetails() {
         Back
       </button>
     </div>
-  )
+  );
 }
