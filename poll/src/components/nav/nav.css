@@ -1,0 +1,54 @@
+/* Nav.css */
+
+/* The main nav container */
+.nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  background-color: #1976d2; /* Material Blue */
+  padding: 10px 16px;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 4px;
+}
+
+/* The anchor links inside nav */
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.nav a:hover {
+  color: #ffeb3b; /* A bit of a highlight on hover */
+}
+
+/* The container that holds user avatar and greeting */
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto; /* push profile to the right */
+}
+
+/* The user avatar in the nav */
+.nav-avatar {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+/* The logout button */
+.logout-button {
+  background-color: #fff;
+  color: #1976d2;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.logout-button:hover {
+  background-color: #e3f2fd; /* Lighter shade of blue */
+}

@@ -1,0 +1,42 @@
+/* Dashboard.css */
+
+.dashboard-container {
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dashboard-header {
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+
+.dashboard-toggle {
+  margin-bottom: 20px;
+}
+
+.dashboard-toggle button {
+  background-color: #f5f5f5; 
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.dashboard-toggle button.active {
+  font-weight: bold;
+  background-color: #1976d2; 
+  color: #fff;
+  border-color: #1976d2;
+}
+
+.dashboard-list {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard-list li {
+  margin-bottom: 10px;
+}

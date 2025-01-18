@@ -1,6 +1,8 @@
+// src/components/Dashboard.js
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import Poll from './Poll'
+import Poll from '../poll/Poll'
+import './dashboard.css'
 
 export default function Dashboard() {
   const [showUnanswered, setShowUnanswered] = useState(true)
@@ -8,33 +10,36 @@ export default function Dashboard() {
   const questions = useSelector((state) => state.questions)
   const userAnswers = useSelector((state) => state.users[authedUser].answers)
 
-  // QIDs that the user has answered
   const answered = Object.keys(userAnswers)
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
 
-  // Filter out answered to get unanswered
   const unanswered = Object.keys(questions)
     .filter((qid) => !answered.includes(qid))
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
 
   return (
-    <div>
-      <h3>Dashboard</h3>
-      <div>
+    <div className="dashboard-container">
+      <h3 className="dashboard-header">Dashboard</h3>
+
+      <div className="dashboard-toggle">
+        {/* Unanswered Button */}
         <button
-          style={{ fontWeight: showUnanswered ? 'bold' : 'normal' }}
+          className={showUnanswered ? 'active' : ''}
           onClick={() => setShowUnanswered(true)}
         >
           Unanswered
         </button>
+
+        {/* Answered Button */}
         <button
-          style={{ fontWeight: !showUnanswered ? 'bold' : 'normal' }}
+          className={!showUnanswered ? 'active' : ''}
           onClick={() => setShowUnanswered(false)}
         >
           Answered
         </button>
       </div>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+
+      <ul className="dashboard-list">
         {showUnanswered
           ? unanswered.map((id) => (
               <li key={id}>

@@ -1,6 +1,8 @@
+// src/components/Poll.js
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import './poll.css'
 
 function getAvatar(avatarURL) {
   return avatarURL ? avatarURL : 'https://via.placeholder.com/50'
@@ -8,35 +10,35 @@ function getAvatar(avatarURL) {
 
 export default function Poll({ id }) {
   const { question, author } = useSelector((state) => {
-    const question = state.questions[id];
-    const author = question ? state.users[question.author] : null;
-    return { question, author };
-  });
+    const question = state.questions[id]
+    const author = question ? state.users[question.author] : null
+    return { question, author }
+  })
 
   if (!question) {
-    return <p>This question doesn't exist</p>;
+    return <p>This question doesn't exist</p>
   }
 
   if (!author) {
-    return <p>Author not found</p>;
+    return <p>Author not found</p>
   }
 
   return (
-    <div className="poll" style={{ border: '1px solid #ccc', margin: '1rem 0', padding: '1rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+    <div className="poll-container">
+      <div className="poll-header">
         <img
           src={getAvatar(author.avatarURL)}
           alt={`Avatar of ${author.name}`}
-          width="40"
-          height="40"
-          style={{ borderRadius: '50%' }}
+          className="poll-avatar"
         />
         <h4>{author.name} asks:</h4>
       </div>
-      <p style={{ marginTop: '1rem' }}>
+      <p className="poll-content">
         Would you rather <strong>{question.optionOne.text}</strong> or ...
       </p>
-      <Link to={`/questions/${id}`}>View Poll</Link>
+      <Link to={`/questions/${id}`} className="poll-link">
+        View Poll
+      </Link>
     </div>
-  );
+  )
 }

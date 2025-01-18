@@ -1,9 +1,10 @@
+// src/components/Nav.js
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { logoutAuthedUser } from '../actions/authedUser'
+import { logoutAuthedUser } from '../../actions/authedUser'
+import './nav.css'
 
-// A small helper: if user.avatarURL is null, we show a placeholder
 function getAvatar(avatarURL) {
   return avatarURL ? avatarURL : 'https://via.placeholder.com/50'
 }
@@ -20,22 +21,26 @@ export default function Nav() {
   }
 
   return (
-    <nav className="nav" style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+    <nav className="nav">
       {authedUser && (
         <>
           <Link to="/home">Home</Link>
           <Link to="/add">New Poll</Link>
           <Link to="/leaderboard">Leaderboard</Link>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+
+          <div className="nav-profile">
             <img
               src={user ? getAvatar(user.avatarURL) : 'https://via.placeholder.com/50'}
               alt={user ? `Avatar of ${user.name}` : 'Avatar'}
-              width="30"
-              height="30"
-              style={{ borderRadius: '50%' }}
+              className="nav-avatar"
             />
             <span>Hello, {user && user.name}</span>
-            <button onClick={handleLogout}>Logout</button>
+            <button
+              className="logout-button"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
           </div>
         </>
       )}

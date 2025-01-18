@@ -1,0 +1,15 @@
+/* NotFound.css */
+
+/* Container for the 404 message */
+.notfound-container {
+  margin-top: 2rem;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* The text for the 404 message */
+.notfound-text {
+  font-size: 24px;
+  color: #f44336; /* Material Red */
+  margin: 0;
+}

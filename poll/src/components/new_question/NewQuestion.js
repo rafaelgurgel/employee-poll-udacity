@@ -1,7 +1,9 @@
+// src/components/NewQuestion.js
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { handleAddQuestion } from '../actions/shared'
+import { handleAddQuestion } from '../../actions/shared'
 import { useNavigate } from 'react-router-dom'
+import './new_question.css'
 
 export default function NewQuestion() {
   const dispatch = useDispatch()
@@ -20,9 +22,9 @@ export default function NewQuestion() {
   }
 
   return (
-    <div style={{ marginTop: '2rem' }}>
-      <h3>Create New Question</h3>
-      <form onSubmit={handleSubmit}>
+    <div className="new-question-container">
+      <h3 className="new-question-title">Create New Question</h3>
+      <form className="new-question-form" onSubmit={handleSubmit}>
         <label>Would you rather...</label>
         <input
           type="text"
@@ -30,18 +32,23 @@ export default function NewQuestion() {
           onChange={(e) => setOptionOne(e.target.value)}
           placeholder="Option One"
           required
-          style={{ display: 'block', margin: '0.5rem 0' }}
+          className="new-question-input"
         />
-        <h4 style={{ margin: 0 }}>OR</h4>
+
+        <h4 className="new-question-or">OR</h4>
+
         <input
           type="text"
           value={optionTwo}
           onChange={(e) => setOptionTwo(e.target.value)}
           placeholder="Option Two"
           required
-          style={{ display: 'block', margin: '0.5rem 0' }}
+          className="new-question-input"
         />
-        <button type="submit">Submit</button>
+
+        <button type="submit" className="new-question-submit">
+          Submit
+        </button>
       </form>
     </div>
   )

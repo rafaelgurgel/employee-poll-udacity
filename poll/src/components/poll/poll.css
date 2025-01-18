@@ -1,0 +1,43 @@
+/* Poll.css */
+
+/* Outer container for an individual Poll preview */
+.poll-container {
+  border: 1px solid #ccc;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 4px; /* Slight rounding for a card-like style */
+  font-family: 'Roboto', sans-serif;
+  background-color: #fafafa;
+}
+
+/* Horizontal layout for the poll header: avatar + name */
+.poll-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* The author’s avatar */
+.poll-avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+/* The main question text area */
+.poll-content {
+  margin-top: 1rem;
+  color: #333;
+}
+
+/* Link to go view the poll details */
+.poll-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #1976d2; /* Material Blue */
+  text-decoration: none;
+  font-weight: 500;
+}
+.poll-link:hover {
+  text-decoration: underline;
+}

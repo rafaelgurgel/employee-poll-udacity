@@ -1,5 +1,7 @@
+// src/components/Leaderboard.js
 import React from 'react'
 import { useSelector } from 'react-redux'
+import './leaderboard.css'
 
 function getAvatar(avatarURL) {
   return avatarURL ? avatarURL : 'https://via.placeholder.com/50'
@@ -18,20 +20,19 @@ export default function Leaderboard() {
     .sort((a, b) => (b.questionsCount + b.answersCount) - (a.questionsCount + a.answersCount))
 
   return (
-    <div>
-      <h3>Leaderboard</h3>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+    <div className="leaderboard-container">
+      <h3 className="leaderboard-title">Leaderboard</h3>
+
+      <ul className="leaderboard-list">
         {leaderboard.map((u) => (
-          <li key={u.id} className="leaderboard-item" style={{ border: '1px solid #ccc', margin: '1rem 0', padding: '1rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <li key={u.id} className="leaderboard-item">
+            <div className="leaderboard-item-content">
               <img
                 src={getAvatar(u.avatarURL)}
                 alt={`Avatar of ${u.name}`}
-                width="50"
-                height="50"
-                style={{ borderRadius: '50%' }}
+                className="leaderboard-avatar"
               />
-              <div>
+              <div className="leaderboard-user-details">
                 <h4>{u.name}</h4>
                 <p>Questions Asked: {u.questionsCount}</p>
                 <p>Questions Answered: {u.answersCount}</p>

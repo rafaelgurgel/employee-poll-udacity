@@ -1,7 +1,9 @@
+// src/components/Login.js
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { handleSetAuthedUser } from '../actions/shared'
+import { handleSetAuthedUser } from '../../actions/shared'
 import { useNavigate } from 'react-router-dom'
+import './login.css'
 
 export default function Login() {
   const dispatch = useDispatch()
@@ -12,7 +14,7 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  // We have all users in Redux state (shape: {sarahedo: {id, password, ...}, ...})
+  // We have all users in Redux state
   const users = useSelector((state) => state.users)
 
   const handleSubmit = (e) => {
@@ -31,15 +33,16 @@ export default function Login() {
       return
     }
 
-    // If credentials are correct, setAuthedUser to this user
+    // If credentials are correct, setAuthedUser
     dispatch(handleSetAuthedUser(username))
     navigate('/home')
   }
 
   return (
-    <div className="login-container" style={{ marginTop: 50 }}>
-      <h2>Employee Polls Login</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: 300 }}>
+    <div className="login-container">
+      <h2 className="login-title">Employee Polls Login</h2>
+
+      <form className="login-form" onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -52,7 +55,7 @@ export default function Login() {
           }}
         />
 
-        <label htmlFor="password" style={{ marginTop: 10 }}>Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
@@ -64,11 +67,12 @@ export default function Login() {
           }}
         />
 
-        <button type="submit" style={{ marginTop: 20 }}>
+        <button type="submit">
           Login
         </button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      {error && <p className="error-message">{error}</p>}
     </div>
   )
 }
