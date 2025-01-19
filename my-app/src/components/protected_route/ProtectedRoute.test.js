@@ -37,7 +37,6 @@ describe('ProtectedRoute Component', () => {
       </MemoryRouter>
     );
 
-    // Check that the child component is rendered
     expect(getByText(/Mock Child Content/i)).toBeInTheDocument();
   });
 
@@ -58,10 +57,8 @@ describe('ProtectedRoute Component', () => {
       </MemoryRouter>
     );
 
-    // Check that the MockComponent is not rendered
     expect(queryByText(/Mock Child Content/i)).not.toBeInTheDocument();
 
-    // Check that the login page is rendered
     expect(container).toHaveTextContent(/Login Page/i);
   });
 });
