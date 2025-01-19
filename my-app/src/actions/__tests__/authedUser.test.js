@@ -2,7 +2,6 @@ import { SET_AUTHED_USER, LOGOUT_AUTHED_USER, setAuthedUser, logoutAuthedUser } 
 
 describe('authedUser actions', () => {
   beforeEach(() => {
-    // Clear mocks before each test
     localStorage.clear();
     jest.clearAllMocks();
   });
@@ -38,7 +37,6 @@ describe('authedUser actions', () => {
     });
 
     it('should remove the authed user ID from localStorage', () => {
-      // Set a mock authedUser in localStorage
       localStorage.setItem('authedUser', 'user123');
 
       logoutAuthedUser();

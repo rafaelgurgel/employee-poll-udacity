@@ -5,7 +5,6 @@ import { createStore } from 'redux'
 import Dashboard from './Dashboard'
 import '@testing-library/jest-dom'
 
-// Mocking console.warn to suppress React Router Future Flag warnings
 beforeAll(() => {
   jest.spyOn(console, 'warn').mockImplementation((message) => {
     if (!message.includes('React.startTransition')) {

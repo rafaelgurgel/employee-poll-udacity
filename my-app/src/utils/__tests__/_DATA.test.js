@@ -31,11 +31,10 @@ describe('_saveQuestion', () => {
 
   it('should return an error if incorrect data is passed', async () => {
     const badQuestionData = {
-      optionOneText: '', // missing required fields
+      optionOneText: '',
       author: '',
     }
 
-    // We expect this to reject with an error
     await expect(_saveQuestion(badQuestionData)).rejects.toEqual(
       'Please provide optionOneText, optionTwoText, and author'
     )

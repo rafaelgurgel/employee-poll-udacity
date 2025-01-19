@@ -92,7 +92,7 @@ describe('users reducer', () => {
         questions: ['q1'],
         answers: {
           q1: 'optionOne',
-          q2: 'optionTwo', // New answer added
+          q2: 'optionTwo',
         },
       },
     });

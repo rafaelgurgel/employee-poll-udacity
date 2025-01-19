@@ -11,14 +11,9 @@ import {
   LOGOUT_AUTHED_USER,
 } from '../../actions/authedUser'
 
-// ----------------------
-// Minimal test reducer
-// that handles the actions.
-// ----------------------
 function testReducer(
   state = {
     users: {
-      // Provide at least one valid user for login
       sarahedo: { password: 'abc', name: 'Sarah Edo' },
       johndoe: { password: 'xyz', name: 'John Doe' },
     },
@@ -41,6 +36,18 @@ function testReducer(
       return state
   }
 }
+
+beforeAll(() => {
+  jest.spyOn(console, 'warn').mockImplementation((message) => {
+    if (!message.includes('React.startTransition')) {
+      console.warn(message)
+    }
+  })
+})
+
+afterAll(() => {
+  jest.restoreAllMocks()
+})
 
 describe('Login Component', () => {
   it('matches snapshot', () => {
@@ -71,7 +78,6 @@ describe('Login Component', () => {
   })
 
   it('shows error if user does not exist', () => {
-    // We'll pass a store with an empty "users" object
     const customStore = createStore(() => ({ users: {}, authedUser: null }))
 
     const { getByLabelText, getByText, getByRole } = render(
@@ -91,11 +97,28 @@ describe('Login Component', () => {
     expect(getByText(/User does not exist./i)).toBeInTheDocument()
   })
 
-  // --------------------------------
-  // NEW: Test that user is removed (authedUser = null) on logout
-  // --------------------------------
+  it('redirects to /home if a user is already logged in', () => {
+    const preloadedState = {
+      users: {
+        sarahedo: { password: 'abc', name: 'Sarah Edo' },
+      },
+      authedUser: 'sarahedo',
+    };
+    const store = createStore(testReducer, preloadedState);
+
+    const { queryByText } = render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Login />
+        </BrowserRouter>
+      </Provider>
+    );
+
+    expect(queryByText(/Employee Polls Login/i)).not.toBeInTheDocument();
+  });
+
+ 
   it('removes the user (authedUser) from Redux after logout', () => {
-    // Preload store with a logged-in user
     const preloadedState = {
       users: {
         sarahedo: { password: 'abc' },
@@ -104,11 +127,8 @@ describe('Login Component', () => {
     }
     const store = createStore(testReducer, preloadedState)
 
-    // You might have a separate "Logout" button somewhere in the app.
-    // For this test, we'll directly dispatch the logout action:
     store.dispatch({ type: LOGOUT_AUTHED_USER })
 
-    // Now check that authedUser is null
     const state = store.getState()
     expect(state.authedUser).toBeNull()
   })

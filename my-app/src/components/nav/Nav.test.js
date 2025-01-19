@@ -6,6 +6,18 @@ import { BrowserRouter, createRoutesFromElements, Route, RouterProvider, createB
 import Nav from './Nav'
 import '@testing-library/jest-dom'
 
+beforeAll(() => {
+  jest.spyOn(console, 'warn').mockImplementation((message) => {
+    if (!message.includes('React.startTransition')) {
+      console.warn(message)
+    }
+  })
+})
+
+afterAll(() => {
+  jest.restoreAllMocks()
+})
+
 const mockReducer = (state = {
   authedUser: 'sarahedo',
   users: {

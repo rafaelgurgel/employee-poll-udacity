@@ -9,8 +9,6 @@ export default function Dashboard() {
   const authedUser = useSelector((state) => state.authedUser);
   const questions = useSelector((state) => state.questions);
   const users = useSelector((state) => state.users);
-
-  // Defensive check: if users[authedUser] doesn't exist yet, default to {}
   const userAnswers = users[authedUser]?.answers || {};
 
   const answered = Object.keys(userAnswers)

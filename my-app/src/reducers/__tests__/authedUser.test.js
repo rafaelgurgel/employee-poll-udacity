@@ -2,7 +2,7 @@ import authedUser from '../authedUser';
 import { SET_AUTHED_USER, LOGOUT_AUTHED_USER } from '../../actions/authedUser';
 
 describe('authedUser reducer', () => {
-  const initialState = null; // Default state when no authedUser is set
+  const initialState = null;
 
   it('should return the initial state when no action is passed', () => {
     const state = authedUser(undefined, {});
@@ -37,14 +37,12 @@ describe('authedUser reducer', () => {
   });
 
   it('should initialize state from localStorage if available', () => {
-    // Mock localStorage for this test
     const mockLocalStorageState = 'storedUser';
     jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(mockLocalStorageState);
 
     const state = authedUser(undefined, {});
     expect(state).toBe(mockLocalStorageState);
 
-    // Restore original localStorage behavior
     Storage.prototype.getItem.mockRestore();
   });
 });

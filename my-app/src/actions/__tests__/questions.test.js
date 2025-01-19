@@ -62,7 +62,6 @@ describe('questions actions', () => {
       const answerData = {
         authedUser: 'user1',
         qid: 'q1',
-        // 'answer' is missing
       };
       expect(() => addAnswer(answerData)).toThrow();
     });

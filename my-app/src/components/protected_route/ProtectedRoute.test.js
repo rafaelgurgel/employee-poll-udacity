@@ -15,6 +15,18 @@ function MockComponent() {
   return <div>Mock Child Content</div>
 }
 
+beforeAll(() => {
+  jest.spyOn(console, 'warn').mockImplementation((message) => {
+    if (!message.includes('React.startTransition')) {
+      console.warn(message)
+    }
+  })
+})
+
+afterAll(() => {
+  jest.restoreAllMocks()
+})
+
 describe('ProtectedRoute Component', () => {
   it('matches snapshot when user is authenticated', () => {
     const router = createBrowserRouter(

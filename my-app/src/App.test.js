@@ -6,7 +6,6 @@ import { MemoryRouter } from 'react-router-dom'
 import App from './App'
 import '@testing-library/jest-dom'
 
-// Mock reducer
 const mockReducer = (state = {
   authedUser: 'sarahedo',
   users: {
@@ -35,6 +34,6 @@ describe('App Component', () => {
         </MemoryRouter>
       </Provider>
     )
-    expect(getByText(/option 1/i)).toBeInTheDocument() // Assuming this text is in PollDetails
+    expect(getByText(/option 1/i)).toBeInTheDocument()
   })
 })

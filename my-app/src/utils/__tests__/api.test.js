@@ -10,7 +10,7 @@ import {
   _saveQuestionAnswer,
 } from '../_DATA';
 
-jest.mock('../_DATA'); // Mock the _DATA module
+jest.mock('../_DATA');
 
 describe('API utilities', () => {
   beforeEach(() => {

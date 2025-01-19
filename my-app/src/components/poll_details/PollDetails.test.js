@@ -7,10 +7,9 @@ import PollDetails from './PollDetails';
 import NotFound from '../not_found/NotFound';
 import '@testing-library/jest-dom';
 
-// Mocking React Router hooks
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useParams: () => ({ id: 'q1' }), // Default ID for existing tests
+  useParams: () => ({ id: 'q1' }),
   useNavigate: () => jest.fn(),
 }));
 
