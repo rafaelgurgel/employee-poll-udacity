@@ -22,7 +22,6 @@ const mockReducer = (state = {
   },
 }) => state
 
-// Configure store without adding redux-thunk explicitly
 const mockStore = configureStore({
   reducer: mockReducer,
 })

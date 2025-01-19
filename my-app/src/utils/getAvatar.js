@@ -1,4 +1,3 @@
-// src/utils/getAvatar.js
 import defaultAvatarSVG from '../assets/defaultAvatar.svg'
 
 export default function getAvatar(avatarURL) {

@@ -13,17 +13,12 @@ import ProtectedRoute from './components/protected_route/ProtectedRoute';
 
 export default function App() {
   const dispatch = useDispatch();
-  const authedUser = useSelector((state) => state.authedUser);
+  const state = useSelector((state) => state);
+  const authedUser = state.authedUser;
+
+  console.log('Redux State:', state);
 
   useEffect(() => {
-    // 1. Check if we have a user in localStorage
-    const storedUser = localStorage.getItem('authedUser');
-    if (storedUser) {
-      // 2. Dispatch the user into Redux if found
-      dispatch(handleSetAuthedUser(storedUser));
-    }
-
-    // 3. Load the rest of the initial data
     dispatch(handleInitialData());
   }, [dispatch]);
 

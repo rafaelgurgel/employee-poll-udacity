@@ -8,23 +8,16 @@ import './login.css'
 export default function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  // We'll store both username and password in local component state.
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  // All users in Redux state
   const users = useSelector((state) => state.users)
 
-  // 1. On mount, check if there's an authedUser in localStorage
-  //    and dispatch if it exists
   useEffect(() => {
     const storedUser = localStorage.getItem('authedUser')
     if (storedUser) {
       dispatch(handleSetAuthedUser(storedUser))
-      // Optionally navigate to /home automatically if you want
-      // navigate('/home')
     }
   }, [dispatch])
 
@@ -42,8 +35,7 @@ export default function Login() {
       return
     }
 
-    localStorage.setItem('authedUser', username)
-    console.log(localStorage)
+    // localStorage.setItem('authedUser', username)
     dispatch(handleSetAuthedUser(username))
     navigate('/home')
   }

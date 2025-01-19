@@ -17,6 +17,10 @@ export function addQuestion(question) {
 }
 
 export function addAnswer({ authedUser, qid, answer }) {
+  if (!authedUser || !qid || !answer) {
+    throw new Error('Missing required fields in addAnswer');
+  }
+  
   return {
     type: ADD_ANSWER,
     authedUser,

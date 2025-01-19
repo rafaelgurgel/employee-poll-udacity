@@ -1,17 +1,7 @@
-/**
- * _DATA.test.js
- *
- * Make sure you have Jest configured and that you can run:
- *    npm test
- * or
- *    npm run test
- * to execute these tests.
- */
-
 import {
   _saveQuestion,
   _saveQuestionAnswer
-} from './_DATA.js'
+} from '../_DATA.js'
 
 describe('_saveQuestion', () => {
   it('should return the saved question with all expected fields when correctly formatted data is passed', async () => {
@@ -23,7 +13,6 @@ describe('_saveQuestion', () => {
 
     const result = await _saveQuestion(questionData)
 
-    // Check that result has the expected structure
     expect(result).toHaveProperty('id')
     expect(result).toHaveProperty('timestamp')
     expect(result).toHaveProperty('author', 'sarahedo')
@@ -63,18 +52,13 @@ describe('_saveQuestionAnswer', () => {
 
     const result = await _saveQuestionAnswer(answerData)
     expect(result).toBe(true)
-
-    // Optionally: check that the internal data got updated
-    // In a real test suite, we might re-fetch from _getUsers() or _getQuestions()
-    // to confirm that 'sarahedo' now voted for optionTwo in '8xf0y6ziyjabvozdd253nd'.
-    // For demonstration, we omit that check or mock the data.
   })
 
   it('should return an error if incorrect data is passed', async () => {
     const badAnswerData = {
-      authedUser: '',    // missing
+      authedUser: '',
       qid: '8xf0y6ziyjabvozdd253nd',
-      answer: '',        // missing
+      answer: '',
     }
 
     await expect(_saveQuestionAnswer(badAnswerData)).rejects.toEqual(
