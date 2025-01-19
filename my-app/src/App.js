@@ -14,8 +14,6 @@ import ProtectedRoute from './components/protected_route/ProtectedRoute';
 export default function App() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  console.log("Questions in state:", state.questions);
-  console.log("Users in state:", state.users);
   const authedUser = state.authedUser;
   useEffect(() => {
     dispatch(handleInitialData());

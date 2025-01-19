@@ -48,8 +48,6 @@ export default function Login() {
     const redirectTo = location.state?.from
       ? `${location.state.from.pathname}${location.state.from.search || ''}`
       : '/home';
-    console.log('here')
-    console.log(redirectTo)
     navigate(redirectTo);
   };
 

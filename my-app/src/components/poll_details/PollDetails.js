@@ -34,7 +34,6 @@ export default function PollDetails() {
   }
 
   if (!authedUser) {
-    console.log('Redirecting to login with location:', location);
     return <Navigate to="/login" state={{ from: location }} />;
   }
 

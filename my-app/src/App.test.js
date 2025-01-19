@@ -26,6 +26,18 @@ const mockStore = configureStore({
 });
 
 describe('App Component', () => {
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation((message) => {
+      if (!message.includes('v7_relativeSplatPath')) {
+        console.warn(message);
+      }
+    });
+  });
+
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
+
   it('renders the PollDetails page for authenticated users', () => {
     const { getByText } = render(
       <Provider store={mockStore}>
