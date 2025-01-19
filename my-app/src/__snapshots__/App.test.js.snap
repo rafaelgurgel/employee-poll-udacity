@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Component matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <nav
+      class="nav"
+    >
+      <a
+        href="/home"
+      >
+        Home
+      </a>
+      <a
+        href="/add"
+      >
+        New Poll
+      </a>
+      <a
+        href="/leaderboard"
+      >
+        Leaderboard
+      </a>
+      <div
+        class="nav-profile"
+      >
+        <img
+          alt="Avatar of Sarah Edo"
+          class="nav-avatar"
+          src="defaultAvatar.svg"
+        />
+        <span>
+          Hello, Sarah Edo
+        </span>
+        <button
+          class="logout-button"
+        >
+          Logout
+        </button>
+      </div>
+    </nav>
+    <div
+      class="polldetails-container"
+    >
+      <h3
+        class="polldetails-title"
+      >
+        Poll by Sarah Edo
+      </h3>
+      <img
+        alt="Avatar of Sarah Edo"
+        class="polldetails-avatar"
+        src="defaultAvatar.svg"
+      />
+      <h4
+        class="polldetails-subtitle"
+      >
+        Would You Rather...
+      </h4>
+      <div>
+        <div
+          class="polldetails-results"
+          style="font-weight: bold; color: green;"
+        >
+          Option 1
+          <br />
+          1 vote(s) (100.00%)
+        </div>
+        <div
+          class="polldetails-results"
+        >
+          Option 2
+          <br />
+          0 vote(s) (0.00%)
+        </div>
+      </div>
+      <br />
+      <button
+        class="polldetails-back"
+      >
+        Back
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
