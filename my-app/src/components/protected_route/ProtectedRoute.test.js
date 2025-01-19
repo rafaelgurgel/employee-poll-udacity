@@ -1,76 +1,67 @@
-import React from 'react'
-import { render } from '@testing-library/react'
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from 'react-router-dom'
-import ProtectedRoute from './ProtectedRoute'
-import '@testing-library/jest-dom'
+import React from 'react';
+import { render } from '@testing-library/react';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
+import '@testing-library/jest-dom';
 
 function MockComponent() {
-  return <div>Mock Child Content</div>
+  return <div>Mock Child Content</div>;
 }
 
 beforeAll(() => {
   jest.spyOn(console, 'warn').mockImplementation((message) => {
     if (!message.includes('React.startTransition')) {
-      console.warn(message)
+      console.warn(message);
     }
-  })
-})
+  });
+});
 
 afterAll(() => {
-  jest.restoreAllMocks()
-})
+  jest.restoreAllMocks();
+});
 
 describe('ProtectedRoute Component', () => {
-  it('matches snapshot when user is authenticated', () => {
-    const router = createBrowserRouter(
-      createRoutesFromElements(
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute authedUser="sarahedo">
-              <MockComponent />
-            </ProtectedRoute>
-          }
-        />
-      ),
-      {
-        future: {
-          v7_startTransition: true,
-        },
-      }
-    )
+  it('renders the child component when user is authenticated', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute authedUser="sarahedo">
+                <MockComponent />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </MemoryRouter>
+    );
 
-    const { asFragment } = render(<RouterProvider router={router} />)
-    expect(asFragment()).toMatchSnapshot()
-  })
+    // Check that the child component is rendered
+    expect(getByText(/Mock Child Content/i)).toBeInTheDocument();
+  });
 
-  it('matches snapshot when user is not authenticated', () => {
-    const router = createBrowserRouter(
-      createRoutesFromElements(
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute authedUser={null}>
-              <MockComponent />
-            </ProtectedRoute>
-          }
-        />
-      ),
-      {
-        future: {
-          v7_startTransition: true,
-        },
-      }
-    )
+  it('redirects to the login page when user is not authenticated', () => {
+    const { queryByText, container } = render(
+      <MemoryRouter initialEntries={['/protected']}>
+        <Routes>
+          <Route
+            path="/protected"
+            element={
+              <ProtectedRoute authedUser={null}>
+                <MockComponent />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/" element={<div>Login Page</div>} />
+        </Routes>
+      </MemoryRouter>
+    );
 
-    const { asFragment } = render(<RouterProvider router={router} />)
-    expect(asFragment()).toMatchSnapshot()
-  })
-})
+    // Check that the MockComponent is not rendered
+    expect(queryByText(/Mock Child Content/i)).not.toBeInTheDocument();
+
+    // Check that the login page is rendered
+    expect(container).toHaveTextContent(/Login Page/i);
+  });
+});
