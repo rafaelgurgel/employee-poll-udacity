@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Navigate, useNavigate, useLocation } from 'react-router-dom';
-import { handleAnswer } from '../../actions/shared';
+import { handleInitialData, handleAnswer } from '../../actions/shared';
 import getAvatar from '../../utils/getAvatar';
 
 import './poll_details.css';
@@ -12,24 +12,38 @@ export default function PollDetails() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { question, author, user, authedUser } = useSelector((state) => {
-    const question = state.questions[id];
+  const { question, author, user, authedUser, questionsLoaded } = useSelector((state) => {
+    const question = state.questions ? state.questions[id] : null;
     const author = question ? state.users[question.author] : null;
     const authedUser = state.authedUser;
     const user = authedUser ? state.users[authedUser] : null;
-    return { question, author, user, authedUser };
+    const questionsLoaded = Boolean(state.questions && Object.keys(state.questions).length);
+    return { question, author, user, authedUser, questionsLoaded };
   });
 
+  // Dispatch initial data if state is empty
+  useEffect(() => {
+    if (!questionsLoaded) {
+      dispatch(handleInitialData());
+    }
+  }, [questionsLoaded, dispatch]);
+
+  // Handle loading state
+  if (!questionsLoaded) {
+    return <p>Loading...</p>;
+  }
+
   if (!authedUser) {
-    console.log('Redirecting to login with location:', location);
     return <Navigate to="/login" state={{ from: location }} />;
   }
 
   if (!question) {
+    console.warn(`Question with ID ${id} not found.`);
     return <Navigate to="/notfound" />;
   }
-  
+
   if (!author || !user) {
+    console.warn("Author or user data missing.");
     return <p>Required data not found</p>;
   }
 

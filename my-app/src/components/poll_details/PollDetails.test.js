@@ -2,9 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import PollDetails from './PollDetails';
-import NotFound from '../not_found/NotFound';
 import '@testing-library/jest-dom';
 
 jest.mock('react-router-dom', () => ({
@@ -31,6 +30,7 @@ const mockReducer = (state = {
 const mockStore = createStore(mockReducer);
 
 describe('PollDetails Component', () => {
+  // Silence warnings specific to future flags
   beforeAll(() => {
     jest.spyOn(console, 'warn').mockImplementation((message) => {
       if (!message.includes('v7_relativeSplatPath')) {
