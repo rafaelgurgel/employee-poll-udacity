@@ -16,8 +16,6 @@ export default function App() {
   const state = useSelector((state) => state);
   const authedUser = state.authedUser;
 
-  console.log('Redux State:', state);
-
   useEffect(() => {
     dispatch(handleInitialData());
   }, [dispatch]);

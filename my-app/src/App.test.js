@@ -6,6 +6,18 @@ import { MemoryRouter } from 'react-router-dom'
 import App from './App'
 import '@testing-library/jest-dom'
 
+beforeAll(() => {
+  jest.spyOn(console, 'warn').mockImplementation((message) => {
+    if (!message.includes('React.startTransition')) {
+      console.warn(message)
+    }
+  })
+})
+
+afterAll(() => {
+  jest.restoreAllMocks()
+})
+
 const mockReducer = (state = {
   authedUser: 'sarahedo',
   users: {

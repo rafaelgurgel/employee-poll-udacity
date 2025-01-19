@@ -23,7 +23,6 @@ export default function PollDetails() {
   if (!question) {
     return <Navigate to="/notfound" />;
   }
-  console.log(user)
   if (!author || !user) {
     return <p>Required data not found</p>;
   }
