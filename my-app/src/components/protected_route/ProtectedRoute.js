@@ -1,9 +1,12 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 export default function ProtectedRoute({ authedUser, children }) {
+  const location = useLocation();
+
   if (!authedUser) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
+
   return children;
 }

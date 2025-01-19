@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Navigate, useNavigate } from 'react-router-dom';
+import { useParams, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { handleAnswer } from '../../actions/shared';
 import getAvatar from '../../utils/getAvatar';
 
@@ -8,22 +8,27 @@ import './poll_details.css';
 
 export default function PollDetails() {
   const { id } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { question, author, user } = useSelector((state) => {
+  const { question, author, user, authedUser } = useSelector((state) => {
     const question = state.questions[id];
     const author = question ? state.users[question.author] : null;
     const authedUser = state.authedUser;
     const user = authedUser ? state.users[authedUser] : null;
-    return { question, author, user };
+    return { question, author, user, authedUser };
   });
 
-  
+  if (!authedUser) {
+    console.log('Redirecting to login with location:', location);
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
+
   if (!question) {
     return <Navigate to="/notfound" />;
   }
-  console.log(user)
+  
   if (!author || !user) {
     return <p>Required data not found</p>;
   }

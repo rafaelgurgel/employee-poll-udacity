@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleSetAuthedUser } from '../../actions/shared';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import './login.css';
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -22,7 +24,10 @@ export default function Login() {
   }, [dispatch]);
 
   if (authedUser) {
-    return <Navigate to="/home" replace />;
+    const redirectTo = location.state?.from
+      ? `${location.state.from.pathname}${location.state.from.search || ''}`
+      : '/home';
+    return <Navigate to={redirectTo} replace />;
   }
 
   const handleSubmit = (e) => {
@@ -40,7 +45,12 @@ export default function Login() {
     }
 
     dispatch(handleSetAuthedUser(username));
-    navigate('/home');
+    const redirectTo = location.state?.from
+      ? `${location.state.from.pathname}${location.state.from.search || ''}`
+      : '/home';
+    console.log('here')
+    console.log(redirectTo)
+    navigate(redirectTo);
   };
 
   return (
