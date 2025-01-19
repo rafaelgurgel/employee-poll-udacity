@@ -38,10 +38,10 @@ export function handleAnswer(qid, answer) {
 export function handleSetAuthedUser(id) {
   return (dispatch) => {
     if (id === null) {
-      localStorage.removeItem('authedUser'); // Clear user on logout
+      localStorage.removeItem('authedUser');
       dispatch({ type: 'LOGOUT_AUTHED_USER' });
     } else {
-      localStorage.setItem('authedUser', id); // Persist user on login
+      localStorage.setItem('authedUser', id);
       dispatch({ type: 'SET_AUTHED_USER', id });
     }
   };
