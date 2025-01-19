@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 import NotFound from './NotFound';
 import '@testing-library/jest-dom';
 
-const mockReducer = (state = {}) => state; // Mock reducer
+const mockReducer = (state = {}) => state;
 
 const mockStore = configureStore({
   reducer: mockReducer,
@@ -31,7 +31,7 @@ describe('NotFound Component', () => {
         <MemoryRouter
           future={{
             v7_relativeSplatPath: true,
-            v7_startTransition: true, // Enable startTransition future flag
+            v7_startTransition: true,
           }}
         >
           <NotFound />

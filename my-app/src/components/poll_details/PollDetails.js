@@ -21,14 +21,12 @@ export default function PollDetails() {
     return { question, author, user, authedUser, questionsLoaded };
   });
 
-  // Dispatch initial data if state is empty
   useEffect(() => {
     if (!questionsLoaded) {
       dispatch(handleInitialData());
     }
   }, [questionsLoaded, dispatch]);
 
-  // Handle loading state
   if (!questionsLoaded) {
     return <p>Loading...</p>;
   }
