@@ -32,8 +32,6 @@ I cloned the repo on a new machine, ran npm install then npm test then npm start
 
 The code you say its not there is there, maybe you can delete the folder and clone again to be sure.
 
-I am enclosing screenshots for your reference. Check your stuff, the changes are there and were E2E tested, if you access github alone you will see that the package.json includes the required dependencies.
-
-Please, I have very little time, do your job and I will do mine.
+I am enclosing screenshots for your reference. The changes are there and were E2E tested, if you access github alone you will see that the package.json includes the required dependencies.
 
 have a nice day
