@@ -1,7 +1,6 @@
 import { getInitialData, saveQuestion, saveQuestionAnswer } from '../utils/api'
 import { receiveUsers } from './users'
 import { receiveQuestions, addQuestion, addAnswer } from './questions'
-import { setAuthedUser } from './authedUser'
 
 export function handleInitialData() {
   return (dispatch) => {
