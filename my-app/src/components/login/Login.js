@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleSetAuthedUser } from "../../actions/shared";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./login.css";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation(); // Capture current location
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,23 +16,14 @@ export default function Login() {
   const authedUser = useSelector((state) => state.authedUser);
   const users = useSelector((state) => state.users);
 
+  // Get the intended path from location.state or default to "/home"
+  const redirectTo = location.state?.from || "/home";
+
   useEffect(() => {
-    const storedUser = localStorage.getItem("authedUser");
-    if (storedUser) {
-      dispatch(handleSetAuthedUser(storedUser));
+    if (authedUser) {
+      navigate(redirectTo, { replace: true }); // Redirect to the intended path
     }
-  }, [dispatch]);
-
-  const handleRedirect = () => {
-    const lastAccessedPage = localStorage.getItem("lastAccessedPage") || "/home";
-    localStorage.removeItem("lastAccessedPage");
-    navigate(lastAccessedPage, { replace: true });
-  };
-
-  if (authedUser) {
-    handleRedirect();
-    return null;
-  }
+  }, [authedUser, redirectTo, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,9 +39,7 @@ export default function Login() {
       return;
     }
 
-    dispatch(handleSetAuthedUser(username));
-    localStorage.setItem("authedUser", username); // Persist login
-    handleRedirect();
+    dispatch(handleSetAuthedUser(username)); // Set authedUser in Redux state
   };
 
   return (

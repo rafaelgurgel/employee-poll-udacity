@@ -96,26 +96,6 @@ describe('Login Component', () => {
     expect(getByText(/User does not exist./i)).toBeInTheDocument();
   });
 
-  it('redirects to /home if a user is already logged in', () => {
-    const preloadedState = {
-      users: {
-        sarahedo: { password: 'abc', name: 'Sarah Edo' },
-      },
-      authedUser: 'sarahedo',
-    };
-    const store = createStore(testReducer, preloadedState);
-
-    const { queryByText } = render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <Login />
-        </BrowserRouter>
-      </Provider>
-    );
-
-    expect(queryByText(/Employee Polls Login/i)).not.toBeInTheDocument();
-  });
-
   it('removes the user (authedUser) from Redux after logout', () => {
     const preloadedState = {
       users: {

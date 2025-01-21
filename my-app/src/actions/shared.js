@@ -38,10 +38,10 @@ export function handleAnswer(qid, answer) {
 export function handleSetAuthedUser(id) {
   return (dispatch) => {
     if (id === null) {
-      localStorage.removeItem('authedUser');
+      // localStorage.removeItem('authedUser');
       dispatch({ type: 'LOGOUT_AUTHED_USER' });
     } else {
-      localStorage.setItem('authedUser', id);
+      // localStorage.setItem('authedUser', id);
       dispatch({ type: 'SET_AUTHED_USER', id });
     }
   };
